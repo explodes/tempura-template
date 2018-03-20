@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.android.game"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        buildToolsVersion "28-rc1"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+android.sourceSets {
+    main {
+        manifest.srcFile  "AndroidManifest.xml"
+        java.srcDirs('java')
+        res.srcDirs('res')
+    }
+}
+
+dependencies {
+    compile project(':gamelib')
+
+    compile 'com.android.support:appcompat-v7:27.1.0'
+}
