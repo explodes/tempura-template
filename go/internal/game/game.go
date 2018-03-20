@@ -6,7 +6,7 @@ import (
 
 	"errors"
 
-	"github.com/explodes/tanks/go/tanks/res"
+	"github.com/explodes/tempura-template/go/internal/res"
 	"github.com/explodes/tempura"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/audio"
