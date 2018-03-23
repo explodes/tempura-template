@@ -10,6 +10,7 @@ import (
 	"github.com/explodes/tempura"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/audio"
+	"io"
 )
 
 var (
@@ -77,6 +78,13 @@ func (g *Game) SetNewScene(factory func(*Game) (scene Scene, err error)) error {
 
 func (g *Game) SetScene(scene Scene) error {
 	DebugLog("new scene: %T", scene)
+
+	if closeable, shouldClose := g.scene.(io.Closer); shouldClose {
+		if err := closeable.Close(); err != nil {
+			return err
+		}
+	}
+
 	g.scene = scene
 	return nil
 }
