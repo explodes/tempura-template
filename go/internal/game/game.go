@@ -96,7 +96,9 @@ func (g *Game) Update(image *ebiten.Image) error {
 	if g.input.Exit() {
 		return regularTermination
 	}
-
+	if g.input.ToggleFullscreen() {
+		ebiten.SetFullscreen(!ebiten.IsFullscreen())
+	}
 	if g.scene != nil {
 		if err := g.scene.Update(dt); err != nil {
 			return err

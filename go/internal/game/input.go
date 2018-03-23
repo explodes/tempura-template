@@ -2,6 +2,7 @@ package game
 
 type Input interface {
 	Exit() bool
+	ToggleFullscreen() bool
 }
 
 type inputImpl struct{}
