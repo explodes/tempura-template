@@ -3,17 +3,19 @@ package main
 import (
 	"log"
 
-	"github.com/explodes/tempura-template/go/internal/game"
+	_ "github.com/explodes/tempura-template/go/cmd/games_registry"
+	"github.com/explodes/tempura-template/go/core"
+	"github.com/explodes/tempura-template/go/overworld"
 	"github.com/hajimehoshi/ebiten"
 )
 
 func main() {
-	g, err := game.NewGame()
+	game, err := overworld.NewOverworld("title")
 	if err != nil {
 		log.Fatal(err)
 	}
 	ebiten.SetRunnableInBackground(true)
-	if err := ebiten.Run(g.Update, game.ScreenWidth, game.ScreenHeight, 1, game.Title); err != nil {
+	if err := ebiten.Run(game.Update, core.ScreenWidth, core.ScreenHeight, 1, core.Title); err != nil {
 		log.Fatal(err)
 	}
 }

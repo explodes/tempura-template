@@ -1,18 +1,20 @@
 package mobile
 
 import (
-	"github.com/explodes/tempura-template/go/internal/game"
+	_ "github.com/explodes/tempura-template/go/cmd/games_registry"
+	"github.com/explodes/tempura-template/go/core"
+	"github.com/explodes/tempura-template/go/overworld"
 	"github.com/hajimehoshi/ebiten/mobile"
-)
-
-const (
-	ScreenWidth  = game.ScreenWidth
-	ScreenHeight = game.ScreenHeight
 )
 
 var (
 	running bool
-	g       *game.Game
+	game    *overworld.Overworld
+)
+
+const (
+	ScreenWidth  = core.ScreenWidth
+	ScreenHeight = core.ScreenHeight
 )
 
 // IsRunning returns a boolean value indicating whether the game is running.
@@ -24,11 +26,11 @@ func IsRunning() bool {
 func Start(scale float64) error {
 	running = true
 	var err error
-	g, err = game.NewGame()
+	game, err = overworld.NewOverworld("title")
 	if err != nil {
 		return err
 	}
-	if err := mobile.Start(g.Update, game.ScreenWidth, game.ScreenHeight, scale, game.Title); err != nil {
+	if err := mobile.Start(game.Update, ScreenWidth, ScreenHeight, scale, core.Title); err != nil {
 		return err
 	}
 	return nil
@@ -40,24 +42,13 @@ func Update() error {
 }
 
 func Pause() {
-	if g != nil {
-		g.Pause()
+	if game != nil {
+		game.Pause()
 	}
 }
 
 func Resume() {
-	if g != nil {
-		g.Resume()
+	if game != nil {
+		game.Resume()
 	}
-}
-
-// UpdateTouchesOnAndroid dispatches touch events on Android.
-func UpdateTouchesOnAndroid(action int, id int, x, y int) {
-	mobile.UpdateTouchesOnAndroid(action, id, x, y)
-}
-
-// UpdateTouchesOnIOS dispatches touch events on iOS.
-func UpdateTouchesOnIOS(phase int, ptr int64, x, y int) {
-	// Prepare this function if you also want to make your game run on iOS.
-	mobile.UpdateTouchesOnIOS(phase, ptr, x, y)
 }

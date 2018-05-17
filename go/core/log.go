@@ -1,4 +1,4 @@
-package game
+package core
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 )
 
 func DebugLog(msg string, args ...interface{}) {
-	if debug {
+	if Debug {
 		Log(msg, args...)
 	}
 }

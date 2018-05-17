@@ -2,13 +2,17 @@
 // +build !android
 // +build !ios
 
-package game
+package overworld
 
 import (
-	"github.com/hajimehoshi/ebiten/inpututil"
 	"github.com/hajimehoshi/ebiten"
+	"github.com/hajimehoshi/ebiten/inpututil"
 )
 
-func (i *inputImpl) ToggleFullscreen() bool {
+func ToggleFullscreen() bool {
 	return inpututil.IsKeyJustPressed(ebiten.KeyF)
+}
+
+func ToggleMute() bool {
+	return inpututil.IsKeyJustPressed(ebiten.KeyM)
 }
