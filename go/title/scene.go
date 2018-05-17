@@ -72,7 +72,7 @@ func NewTitleScene(game *Game) (core.Scene, error) {
 
 func (s *titleScene) fabricateMenu(touches *tux.TouchInput, menuItems []menuItem) *tempura.Objects {
 	const (
-		menuItemSize    = 96
+		menuItemSize    = 48
 		menuItemPadding = 24
 	)
 
