@@ -105,13 +105,13 @@ func (s *titleScene) fabricateMenu(touches *tux.TouchInput, menuItems []menuItem
 					// pick our image
 					switch source.HitTest(touch.Position) {
 					case true:
-						source.Drawable = images[int(touch.Event)]
+						source.Drawable = images[int(touch.State)]
 					case false:
 						source.Drawable = images[len(images)-1]
 						// no-hit, do nothing
 						return
 					}
-					if touch.Event == tux.TouchUp {
+					if touch.State == tux.TouchUp {
 						if err := menuItem.onClick(); err != nil {
 							s.err = err
 						}
