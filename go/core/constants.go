@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	Title        = "Tanks"
+	Title        = "tempura-template"
 	ScreenWidth  = 768
 	ScreenHeight = 432
 
