@@ -15,7 +15,7 @@ func main() {
 		log.Fatal(err)
 	}
 	ebiten.SetRunnableInBackground(true)
-	if err := ebiten.Run(game.Update, core.ScreenWidth, core.ScreenHeight, 1, core.Title); err != nil {
+	if err := ebiten.Run(game.Update, core.ScreenWidth, core.ScreenHeight, 1, core.Title); err != nil && err != core.RegularTermination {
 		log.Fatal(err)
 	}
 }
